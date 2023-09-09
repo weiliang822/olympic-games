@@ -1,19 +1,18 @@
 <template>
-    <h3>总榜</h3>
-    <h4>总奖牌榜</h4>
-    <div id="TotalMedalChart" style="width: 70%;height: 50%;"></div>
-    <h4>总积分榜</h4>
-    <div id="TotalPointChart" style="width: 70%;height: 50%;"></div>
-    <h4>金牌榜</h4>
-    <div id="GoldMedalChart" style="width: 70%;height: 50%;"></div>
-    <h4>银牌榜</h4>
-    <div id="SilverMedalChart" style="width: 70%;height: 50%;"></div>
-    <h4>铜牌榜</h4>
-    <div id="BronzeMedalChart" style="width: 70%;height: 50%;"></div>
-    <h4>男总积分榜</h4>
-    <div id="MalePointChart" style="width: 70%;height: 50%;"></div>
-    <h4>女总积分榜</h4>
-    <div id="FemalePointChart" style="width: 70%;height: 50%;"></div>
+    <!-- <h4>总奖牌榜</h4> -->
+    <div id="TotalMedalChart" :style=chartsStyle></div>
+    <!-- <h4>总积分榜</h4> -->
+    <div id="TotalPointChart" :style=chartsStyle></div>
+    <!-- <h4>金牌榜</h4> -->
+    <div id="GoldMedalChart" :style=chartsStyle></div>
+    <!-- <h4>银牌榜</h4> -->
+    <div id="SilverMedalChart" :style=chartsStyle></div>
+    <!-- <h4>铜牌榜</h4> -->
+    <div id="BronzeMedalChart" :style=chartsStyle></div>
+    <!-- <h4>男总积分榜</h4> -->
+    <div id="MalePointChart" :style=chartsStyle></div>
+    <!-- <h4>女总积分榜</h4> -->
+    <div id="FemalePointChart" :style=chartsStyle></div>
 </template>
 
 <script setup>
@@ -162,15 +161,14 @@ const femalepointdata = computed(() => {
     return tmp
 })
 
+const chartsStyle = {
+    width: '100%',
+    height: '70%'
+}
+
 const baseoption = {
     title: {
         text: ''
-    },
-    tooltip: {
-        trigger: 'axis',
-        axisPointer: {
-            type: 'shadow'
-        }
     },
     legend: {},
     grid: {
@@ -181,12 +179,12 @@ const baseoption = {
     },
     xAxis: {
         type: 'value',
-        //boundaryGap: [0, 0.01]
     },
     yAxis: {
         type: 'category',
         inverse: true,
-        data: []
+        data: [],
+        max: 9 //最多显示前十名
     },
     series: []
 }
@@ -195,23 +193,36 @@ const TotalMedalOption = computed(() => {
     baseoption.series = []
     baseoption.title.text = '总奖牌榜'
     baseoption.yAxis.data = ydata.value
+    baseoption.yAxis.max = 5
     baseoption.series.push({
         realtimeSort: true,
         name: '金牌',
         type: 'bar',
-        data: golddata.value
+        data: golddata.value,
+        label: {
+            show: true,
+            position: 'right',
+        }
     })
     baseoption.series.push({
-        realtimeSort: true,
+        //realtimeSort: true,
         name: '银牌',
         type: 'bar',
-        data: silverdata.value
+        data: silverdata.value,
+        label: {
+            show: true,
+            position: 'right',
+        }
     })
     baseoption.series.push({
-        realtimeSort: true,
+        // realtimeSort: true,
         name: '铜牌',
         type: 'bar',
-        data: bronzedata.value
+        data: bronzedata.value,
+        label: {
+            show: true,
+            position: 'right',
+        }
     })
     return baseoption
 })
@@ -220,11 +231,16 @@ const GoldMedalOption = computed(() => {
     baseoption.series = []
     baseoption.title.text = '金牌榜'
     baseoption.yAxis.data = ydata.value
+    baseoption.yAxis.max = 5
     baseoption.series.push({
         realtimeSort: true,
         name: '金牌',
         type: 'bar',
-        data: golddata.value
+        data: golddata.value,
+        label: {
+            show: true,
+            position: 'right',
+        }
     })
     return baseoption
 })
@@ -233,11 +249,16 @@ const SilverMedalOption = computed(() => {
     baseoption.series = []
     baseoption.title.text = '银牌榜'
     baseoption.yAxis.data = ydata.value
+    baseoption.yAxis.max = 5
     baseoption.series.push({
         realtimeSort: true,
         name: '银牌',
         type: 'bar',
-        data: silverdata.value
+        data: silverdata.value,
+        label: {
+            show: true,
+            position: 'right',
+        }
     })
     return baseoption
 })
@@ -246,11 +267,16 @@ const BronzeMedalOption = computed(() => {
     baseoption.series = []
     baseoption.title.text = '铜牌榜'
     baseoption.yAxis.data = ydata.value
+    baseoption.yAxis.max = 5
     baseoption.series.push({
         realtimeSort: true,
         name: '铜牌',
         type: 'bar',
-        data: bronzedata.value
+        data: bronzedata.value,
+        label: {
+            show: true,
+            position: 'right',
+        }
     })
     return baseoption
 })
@@ -259,11 +285,16 @@ const TotalPointOption = computed(() => {
     baseoption.series = []
     baseoption.title.text = '总积分榜'
     baseoption.yAxis.data = ydata.value
+    baseoption.yAxis.max = 9
     baseoption.series.push({
         realtimeSort: true,
         name: '总积分',
         type: 'bar',
-        data: pointdata.value
+        data: pointdata.value,
+        label: {
+            show: true,
+            position: 'right',
+        }
     })
     return baseoption
 })
@@ -272,11 +303,16 @@ const MalePointOption = computed(() => {
     baseoption.series = []
     baseoption.title.text = '男总积分榜'
     baseoption.yAxis.data = ydata.value
+    baseoption.yAxis.max = 9
     baseoption.series.push({
         realtimeSort: true,
         name: '男总积分',
         type: 'bar',
-        data: malepointdata.value
+        data: malepointdata.value,
+        label: {
+            show: true,
+            position: 'right',
+        }
     })
     return baseoption
 })
@@ -285,11 +321,16 @@ const FemalePointOption = computed(() => {
     baseoption.series = []
     baseoption.title.text = '女总积分榜'
     baseoption.yAxis.data = ydata.value
+    baseoption.yAxis.max = 9
     baseoption.series.push({
         realtimeSort: true,
         name: '女总积分',
         type: 'bar',
-        data: femalepointdata.value
+        data: femalepointdata.value,
+        label: {
+            show: true,
+            position: 'right',
+        }
     })
     return baseoption
 })

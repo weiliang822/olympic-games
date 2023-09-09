@@ -1,6 +1,6 @@
 <template>
     <h3>项目管理</h3>
-    <el-table :data="filterTableData" stripe>
+    <el-table :data="filterTableData" stripe max-height="500">
         <el-table-column label="项目" prop="name">
             <template #default="scope">
                 <el-input v-model="scope.row.name" v-if="scope.row.edit && scope.row.name == ''"
@@ -33,7 +33,7 @@
         </el-table-column>
         <el-table-column>
             <template #header>
-                <el-button type="primary" @click="addItem">+ 新增</el-button>
+                <el-button type="primary" @click="addItem" size="small" style="margin-bottom: 2px;">+ 新增</el-button>
                 <el-input v-model="search" size="small" placeholder="Type to search" />
             </template>
             <template #default="scope">
@@ -83,7 +83,8 @@ const addItem = () => {
     props.items.push({
         name: '',
         country: [],
-        nocountry: ['中国', '美国', '法国', '英国'],
+        nocountry: ['中国', '美国', '英国', '法国', '俄罗斯', '日本', '澳大利亚', '意大利', '德国', '荷兰',
+            '加拿大', '巴西', '新西兰', '匈牙利', '韩国', '乌克兰', '西班牙', '古巴', '波兰', '瑞士', '土耳其', '牙买加'],
         sex: [],
         nosex: ['男', '女'],
         introduction: ''

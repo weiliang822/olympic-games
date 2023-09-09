@@ -1,12 +1,16 @@
 {
   "name": "olympic-games",
   "private": true,
-  "version": "0.0.0",
-  "type": "module",
+  "version": "1.0.0",
+  "main": "background.js",
+  "author": "2154057 wqz",
+  "copyright": "©2023 weiliang",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "electron:serve": "vite --host",
+    "electron:build": "vite build && electron-builder"
   },
   "dependencies": {
     "@element-plus/icons-vue": "^2.1.0",
@@ -16,6 +20,10 @@
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^4.2.3",
-    "vite": "^4.4.5"
+    "electron": "^26.2.0",
+    "electron-builder": "^24.6.4",
+    "electron-devtools-installer": "^3.2.0",
+    "vite": "^4.4.5",
+    "vite-plugin-electron": "^0.14.0"
   }
 }

@@ -1,6 +1,7 @@
 <template>
     <h3>成绩管理</h3>
-    <el-table :data="filterTableData" stripe style="width: 100%;" :default-sort="{ prop: 'grade', order: 'descending' }">
+    <el-table :data="filterTableData" stripe style="width: 100%;" :default-sort="{ prop: 'grade', order: 'descending' }"
+        max-height="500">
         <el-table-column label="项目" prop="item" :filters="itemFilter" :filter-method="itemFilterHandler" />
         <el-table-column label="国家" prop="country" :filters="countryFilter" :filter-method="countryFilterHandler" />
         <el-table-column label="性别" prop="sex" :filters="sexFilter" :filter-method="sexFilterHandler" />
@@ -118,3 +119,12 @@ const handleConfirm = (index, row) => {
 }
 
 </script>
+
+<style scope>
+.el-table,
+.el-table tr,
+.el-table td,
+.el-table th {
+    background-color: transparent !important;
+}
+</style>
