@@ -10,6 +10,3 @@ yarn dev
 yarn electron:build
 ```
 
-正在开发中
-
-组合式API
