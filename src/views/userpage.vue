@@ -460,16 +460,10 @@ function UpdateAthlete(msg) {
     let athname = msg.name.value;
     for (let athitem of athitems) {
         console.log(athitem)
+        if (countries[athcountry][athitem][athsex] == undefined)
+            countries[athcountry][athitem][athsex] = {}
         countries[athcountry][athitem][athsex][athname] = 0
-        tableData.push({
-            item: athitem,
-            country: athcountry,
-            sex: athsex,
-            name: athname,
-            grade: 0
-        })
     }
-    //console.log(countries)
 }
 
 //项目修改 
